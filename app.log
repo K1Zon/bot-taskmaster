@@ -1,0 +1,5 @@
+INFO:aiogram:Bot: taskmaster [@MasterZadach_Bot]
+WARNING:aiogram:Updates were skipped successfully.
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
