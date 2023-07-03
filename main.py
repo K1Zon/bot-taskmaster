@@ -65,7 +65,7 @@ async def checks_tags(message: types.Message, state: FSMContext):
         await message.reply("Пожалуйста, введите тему корректно")
         await get_tag(user_answer)
     await state.update_data(tag=user_answer)
-    await Task.tag.set()
+    #await Task.tag.set()
 
 
 @dp.message_handler(state=Task.tag)

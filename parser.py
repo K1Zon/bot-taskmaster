@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import psycopg2
-import time
+from time import sleep
 import schedule
 
 
@@ -12,8 +12,14 @@ def get_data():
         print("Can't establish connection to database")
 
     cur = conn.cursor()
+    url = "https://codeforces.com/problemset?order=BY_RATING_ASC"
+    resp = requests.get(url)
+    html = resp.content
+    soup = BeautifulSoup(html, 'html.parser')
+    pages = soup.find_all('span', 'page-index')
+    max_page = int(pages[-1].text)
 
-    for page in range(1, 84):
+    for page in range(1, max_page+1):
         url = f"https://codeforces.com/problemset/page/{page}?order=BY_RATING_ASC"
         response = requests.get(url)
         html = response.content
@@ -67,5 +73,12 @@ def get_data():
     conn.commit()
     cur.close()
     conn.close()
+
+
+
+while True:
+    get_data()
+    print("i parsed")
+    sleep(3600)
 
 
